@@ -1,38 +1,51 @@
 {% extends "layouts.html" %}
 {% block body %}
 <div class="jumbotron">
-    <center>
+  <center>
 
-      <h1 class="display-4">Articles Page</h1>
-      <p class="lead">This Application is buuild using by python and Flask Framework</p>
-      <hr class="my-4">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">title</th>
-            <th scope="col">description</th>
-            <th scope="col">author</th>
-            <th scope="col">date</th>
-            <th scope="col">Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for a in articles %}
-          <tr>
-            <th scope="row">{{a['id']}}</th>
-            <td>{{a['title']}}</td>
-            <td>{{a['body']}}</td>
-            <td>{{a['author']}}</td>
-            <td>{{a['create_date']}}</td>
-            <td><button type="button" class="btn btn-info">편집</button></td>
-            
-            {% endfor %}
-          </tbody>
-        </table>
-        
-        <a class="btn btn-warning btn-lg" href="#" role="button">Learn more</a>
-        
+    <h1 class="display-4">Articles Page</h1>
+    <p class="lead">This Application is buuild using by python and Flask Framework</p>
+    <hr class="my-4">
+    
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        DataTable Example
       </div>
-      {% endblock %}
-    </center>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>DESCRITION</th>
+                <th>AUTHOR</th>
+                <th>DATE</th>
+                <th>EDIT</th>
+              </tr>
+            </thead>
+            <tfoot>
+              
+            </tfoot>
+            <tbody>
+              {% for a in articles %}
+              <tr>
+                <th scope="row">{{a['id']}}</th>
+                <td> <a href="/article/{{ a['id'] }}">{{a['title']}}</a></td>
+                <td>{{a['body']}}</td>
+                <td>{{a['author']}}</td>
+                <td>{{a['create_date']}}</td>
+                <td><button type="button" class="btn btn-info">편집</button></td>
+
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <a class="btn btn-warning btn-lg" href="#" role="button">Learn more</a>
+
+</div>
+{% endblock %}
+</center>
