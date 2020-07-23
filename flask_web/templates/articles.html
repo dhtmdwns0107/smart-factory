@@ -1,51 +1,46 @@
 {% extends "layouts.html" %}
 {% block body %}
-<div class="jumbotron">
-  <center>
-
-    <h1 class="display-4">Articles Page</h1>
-    <p class="lead">This Application is buuild using by python and Flask Framework</p>
+    <div class="jumbotron text-center">
+    <h1 class="display-4">ARTICLES PAGE</h1>
+    <p class="lead">This Application is build using by python and Flask Framework</p>
     <hr class="my-4">
-    
-    <div class="card mb-4">
-      <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        DataTable Example
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>DESCRITION</th>
-                <th>AUTHOR</th>
-                <th>DATE</th>
-                <th>EDIT</th>
-              </tr>
-            </thead>
-            <tfoot>
-              
-            </tfoot>
-            <tbody>
-              {% for a in articles %}
-              <tr>
-                <th scope="row">{{a['id']}}</th>
-                <td> <a href="/article/{{ a['id'] }}">{{a['title']}}</a></td>
-                <td>{{a['body']}}</td>
-                <td>{{a['author']}}</td>
-                <td>{{a['create_date']}}</td>
-                <td><button type="button" class="btn btn-info">편집</button></td>
-
-                {% endfor %}
-            </tbody>
-          </table>
+     
+      <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas mr-1"></i>
+            게시판 리스트
         </div>
-      </div>
-    </div>
-    <a class="btn btn-warning btn-lg" href="#" role="button">Learn more</a>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>TITLE</th>
+                            <th>DESCRIPTION</th>
+                            <th>AUTHOR</th>
+                            <th>DATE</th>
+                            <th>DELETE</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                      {% for article in articles %}
+                        <tr>
+                          <th scope="row">{{ article[0] }}</th>
+                          <td><a href="/article/{{article[0]}}">{{ article[1] }}</a></td>
+                          <td>{{ article[2] }}</td>
+                          <td>{{ article[3] }}</td>
+                          <td>{{ article[4] }}</td>
+                          <td><form action="/delete/{{article[0]}}" method="POST" onsubmit="return confirm('레알 삭제?')"><button type="submit" class="btn btn-danger" >DEL</button></form></td>
+                        </tr>
+                    {% endfor %}
+                      </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    </div>
 
-</div>
+
+  </div>
 {% endblock %}
-</center>
